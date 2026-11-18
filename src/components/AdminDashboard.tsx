@@ -11,6 +11,7 @@ import {
   getInstitutionCompleteness,
   inferCategoryFromLevel,
 } from '../services/institutionService';
+import { resolveImageUrl } from '../lib/media';
 import {
   Institution,
   InstitutionCategory,
@@ -680,7 +681,7 @@ export const AdminDashboard: React.FC = () => {
           : newsFormData.institutionName.trim() || undefined,
       readTime: newsFormData.readTime,
       isPublished: true,
-      imageUrl: '/src/assets/images/campus_faculty_building_1794428718479.jpg',
+      imageUrl: '/images/campus_faculty_building_1794428718479.jpg',
     });
 
     setIsNewsModalOpen(false);
@@ -2310,7 +2311,7 @@ export const AdminDashboard: React.FC = () => {
                   <div className="flex items-center gap-4 pt-1">
                     {formData.logoUrl && (
                       <img
-                        src={formData.logoUrl}
+                        src={resolveImageUrl(formData.logoUrl)}
                         alt="Logo preview"
                         className="w-12 h-12 rounded-lg object-contain border border-slate-300 bg-white p-1"
                         referrerPolicy="no-referrer"
@@ -2318,7 +2319,7 @@ export const AdminDashboard: React.FC = () => {
                     )}
                     {formData.coverImageUrl && (
                       <img
-                        src={formData.coverImageUrl}
+                        src={resolveImageUrl(formData.coverImageUrl)}
                         alt="Cover preview"
                         className="h-12 w-28 rounded-lg object-cover border border-slate-300"
                         referrerPolicy="no-referrer"

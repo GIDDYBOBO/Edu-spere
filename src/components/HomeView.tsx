@@ -1,6 +1,7 @@
 import React from 'react';
 import { useApp } from '../context/AppContext';
 import { NIGERIAN_STATES } from '../data/nigerianStates';
+import { MEDIA_ASSETS, resolveImageUrl } from '../lib/media';
 import {
   Search,
   School,
@@ -123,7 +124,7 @@ export const HomeView: React.FC = () => {
         {/* Campus Imagery Overlay */}
         <div className="absolute inset-0 z-0 opacity-25">
           <img
-            src="/src/assets/images/hero_nigerian_campus_1794428717056.jpg"
+            src={MEDIA_ASSETS.heroCampus}
             alt="Prestigious Nigerian University Campus"
             className="w-full h-full object-cover"
             referrerPolicy="no-referrer"
@@ -408,10 +409,15 @@ export const HomeView: React.FC = () => {
                     {/* Card Header Image */}
                     <div className="relative h-44 bg-slate-800 overflow-hidden">
                       <img
-                        src={inst.coverImageUrl || '/src/assets/images/campus_faculty_building_1794428718479.jpg'}
+                        src={resolveImageUrl(inst.coverImageUrl, MEDIA_ASSETS.campusBuilding)}
                         alt={inst.name}
                         className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                         referrerPolicy="no-referrer"
+                        onError={(e) => {
+                          if (e.currentTarget.src !== MEDIA_ASSETS.campusBuilding) {
+                            e.currentTarget.src = MEDIA_ASSETS.campusBuilding;
+                          }
+                        }}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
                       
@@ -533,10 +539,15 @@ export const HomeView: React.FC = () => {
                 >
                   {article.imageUrl && (
                     <img
-                      src={article.imageUrl}
+                      src={resolveImageUrl(article.imageUrl, MEDIA_ASSETS.campusBuilding)}
                       alt={article.title}
                       className="w-full sm:w-36 h-28 object-cover rounded-lg shrink-0"
                       referrerPolicy="no-referrer"
+                      onError={(e) => {
+                        if (e.currentTarget.src !== MEDIA_ASSETS.campusBuilding) {
+                          e.currentTarget.src = MEDIA_ASSETS.campusBuilding;
+                        }
+                      }}
                     />
                   )}
                   <div className="flex-1 space-y-1.5">

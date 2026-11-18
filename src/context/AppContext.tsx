@@ -147,7 +147,7 @@ interface AppContextType {
 
 const STORAGE_KEYS = {
   INSTITUTIONS: 'edusphere_institutions_v4',
-  NEWS: 'edusphere_news_v1',
+  NEWS: 'edusphere_news_v2',
   SCHOLARSHIPS: 'edusphere_scholarships_v1',
   COMMUNITY: 'edusphere_community_v1',
   USERS: 'edusphere_users_v1',

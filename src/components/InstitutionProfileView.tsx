@@ -25,6 +25,7 @@ import {
 } from 'lucide-react';
 import { DataReport } from '../types';
 import { getRegulatoryAccreditationStatus } from '../services/institutionService';
+import { MEDIA_ASSETS, resolveImageUrl } from '../lib/media';
 
 export const InstitutionProfileView: React.FC = () => {
   const {
@@ -242,10 +243,15 @@ export const InstitutionProfileView: React.FC = () => {
       <div className="bg-slate-900 text-white relative">
         <div className="h-64 sm:h-80 w-full overflow-hidden relative">
           <img
-            src={institution.coverImageUrl || '/src/assets/images/campus_faculty_building_1794428718479.jpg'}
+            src={resolveImageUrl(institution.coverImageUrl, MEDIA_ASSETS.campusBuilding)}
             alt={institution.name}
             className="w-full h-full object-cover opacity-35"
             referrerPolicy="no-referrer"
+            onError={(e) => {
+              if (e.currentTarget.src !== MEDIA_ASSETS.campusBuilding) {
+                e.currentTarget.src = MEDIA_ASSETS.campusBuilding;
+              }
+            }}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/60 to-transparent" />
         </div>
@@ -257,7 +263,7 @@ export const InstitutionProfileView: React.FC = () => {
               {institution.logoUrl && (
                 <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-xl bg-white p-1.5 shadow-lg border border-slate-200 shrink-0 hidden sm:flex items-center justify-center overflow-hidden">
                   <img
-                    src={institution.logoUrl}
+                    src={resolveImageUrl(institution.logoUrl, MEDIA_ASSETS.campusBuilding)}
                     alt={`${institution.acronym || institution.name} Logo`}
                     className="w-full h-full object-contain"
                     referrerPolicy="no-referrer"

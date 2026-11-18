@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { useApp } from '../context/AppContext';
 import { NIGERIAN_STATES, EDUCATION_LEVEL_LABELS } from '../data/nigerianStates';
+import { MEDIA_ASSETS, resolveImageUrl } from '../lib/media';
 import {
   Search,
   RotateCcw,
@@ -436,10 +437,15 @@ export const DirectoryView: React.FC = () => {
                     {/* Image / Header strip */}
                     <div className="relative h-40 bg-slate-800 overflow-hidden">
                       <img
-                        src={inst.coverImageUrl || '/src/assets/images/campus_faculty_building_1794428718479.jpg'}
+                        src={resolveImageUrl(inst.coverImageUrl, MEDIA_ASSETS.campusBuilding)}
                         alt={inst.name}
                         className="w-full h-full object-cover"
                         referrerPolicy="no-referrer"
+                        onError={(e) => {
+                          if (e.currentTarget.src !== MEDIA_ASSETS.campusBuilding) {
+                            e.currentTarget.src = MEDIA_ASSETS.campusBuilding;
+                          }
+                        }}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/30 to-transparent" />
                       

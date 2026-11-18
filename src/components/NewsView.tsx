@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
 import { NewsArticle } from '../types';
 import { Clock, ArrowRight, Share2, X, BookOpen, Calendar, Building } from 'lucide-react';
+import { MEDIA_ASSETS, resolveImageUrl } from '../lib/media';
 
 export const NewsView: React.FC = () => {
   const { news } = useApp();
@@ -65,10 +66,15 @@ export const NewsView: React.FC = () => {
                 {article.imageUrl && (
                   <div className="h-44 bg-slate-800 overflow-hidden">
                     <img
-                      src={article.imageUrl}
+                      src={resolveImageUrl(article.imageUrl, MEDIA_ASSETS.campusBuilding)}
                       alt={article.title}
                       className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                       referrerPolicy="no-referrer"
+                      onError={(e) => {
+                        if (e.currentTarget.src !== MEDIA_ASSETS.campusBuilding) {
+                          e.currentTarget.src = MEDIA_ASSETS.campusBuilding;
+                        }
+                      }}
                     />
                   </div>
                 )}
@@ -130,10 +136,15 @@ export const NewsView: React.FC = () => {
 
             {activeArticle.imageUrl && (
               <img
-                src={activeArticle.imageUrl}
+                src={resolveImageUrl(activeArticle.imageUrl, MEDIA_ASSETS.campusBuilding)}
                 alt={activeArticle.title}
                 className="w-full h-60 object-cover rounded-lg"
                 referrerPolicy="no-referrer"
+                onError={(e) => {
+                  if (e.currentTarget.src !== MEDIA_ASSETS.campusBuilding) {
+                    e.currentTarget.src = MEDIA_ASSETS.campusBuilding;
+                  }
+                }}
               />
             )}
 

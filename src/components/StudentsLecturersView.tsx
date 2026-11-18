@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
 import { Award, BookOpen, Users, CheckCircle2, Search, ExternalLink } from 'lucide-react';
+import { MEDIA_ASSETS } from '../lib/media';
 
 export const StudentsLecturersView: React.FC = () => {
   const { achievements, openInstitutionProfile } = useApp();
@@ -52,7 +53,7 @@ export const StudentsLecturersView: React.FC = () => {
           </div>
           <div className="md:w-1/2 h-64 md:h-80 w-full overflow-hidden bg-slate-900">
             <img
-              src="/src/assets/images/nigerian_student_researcher_1794428719416.jpg"
+              src={MEDIA_ASSETS.studentResearcher}
               alt="Outstanding Nigerian Researcher"
               className="w-full h-full object-cover"
               referrerPolicy="no-referrer"
