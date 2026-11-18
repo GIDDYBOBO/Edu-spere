@@ -1,0 +1,6 @@
+{
+  "name": "EduSphere Nigeria",
+  "description": "Nationwide Nigerian Education Intelligence Platform connecting institutions, students, parents, lecturers, and education stakeholders.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
